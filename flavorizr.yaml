@@ -1,31 +1,22 @@
 flavors:
   dev:
     app:
-      name: "AAWASH Dev"
+      name: "Aawash Dev"
 
     android:
       applicationId: "app.aikon.business.dev"
 
-    ios:
-      bundleId: "app.aikon.business.dev"
-
   stage:
     app:
-      name: "AAWASH Stage"
+      name: "Aawash Stage"
 
     android:
       applicationId: "app.aikon.business.stage"
 
-    ios:
-      bundleId: "app.aikon.business.stage"
-
   prod:
     app:
-      name: "AAWASH"
+      name: "Aawash"
     android:
       applicationId: "app.aikon.business"
-
-    ios:
-      bundleId: "app.aikon.business"
 
 ide: "vscode"

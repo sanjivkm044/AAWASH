@@ -24,21 +24,22 @@ abstract class AawashTextStyle {
   static const TextStyle titleLargeWhite = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.w500,
-    color: AawashTextColor.black,
+    color: AawashColor.black,
   );
 
 // Title Medium
   static const TextStyle titleMedium = TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.w600,
-    color: AawashTextColor.primaryBlack,
+    color: AawashColor.primaryBlack,
   );
 
 // Title small
   static const TextStyle titleSmall = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w500,
-    color: AawashTextColor.black,
+    color: AawashColor.black,
+    fontFamily: 'Balsamiq Sans',
   );
 
   // Body Text Large
@@ -51,34 +52,34 @@ abstract class AawashTextStyle {
   static const TextStyle bodyMedium = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.normal,
-    color: AawashTextColor.grey100,
+    color: AawashColor.grey100,
   );
 
   // Body Text Small
   static const TextStyle bodySmall = TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.normal,
-    color: AawashTextColor.grey100,
+    color: AawashColor.grey100,
   );
 
   // Caption
   static const TextStyle caption = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w400,
-    color: AawashTextColor.grey100,
+    color: AawashColor.grey100,
   );
 
 // AAWASH Title
   static const TextStyle aawashTitle = TextStyle(
     fontSize: 32,
     fontWeight: FontWeight.w400,
-    color: AawashTextColor.primaryBlack,
+    color: AawashColor.primaryBlack,
   );
 
 // AAWASH  Button Title
   static const TextStyle buttonTitle = TextStyle(
     fontSize: 14,
-    fontWeight: FontWeight.w400,
-    color: AawashTextColor.white,
+    fontWeight: FontWeight.w500,
+    color: AawashColor.white,
   );
 }

@@ -6,19 +6,19 @@ abstract class AawashTheme {
     return ThemeData(
       brightness: Brightness.light,
       colorScheme: ColorScheme.fromSeed(
-        seedColor: AawashTextColor.backgroundColor,
+        seedColor: AawashColor.backgroundColor,
       ),
       scaffoldBackgroundColor: Colors.white,
       textTheme: const TextTheme(),
       appBarTheme: const AppBarTheme(),
       iconTheme: const IconThemeData(
-        color: AawashTextColor.iconBlackColor,
+        color: AawashColor.iconBlackColor,
       ),
       bottomAppBarTheme: const BottomAppBarTheme(),
       navigationBarTheme: const NavigationBarThemeData(
         backgroundColor: Colors.white,
         surfaceTintColor: Colors.transparent,
-        indicatorColor: AawashTextColor.iconBlackColor,
+        indicatorColor: AawashColor.iconBlackColor,
       ),
       inputDecorationTheme: const InputDecorationTheme(
         isDense: true,
@@ -35,7 +35,7 @@ abstract class AawashTheme {
         surfaceTintColor: Colors.transparent,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
-          side: const BorderSide(color: AawashTextColor.grey100),
+          side: const BorderSide(color: AawashColor.grey100),
         ),
       ),
     );
