@@ -1,4 +1,5 @@
 import 'package:aawash/feature/authentication/screen/otp_verification_screen.dart';
+import 'package:aawash/feature/authentication/screen/rent_or_buy_screen.dart';
 import 'package:aawash/feature/authentication/screen/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -24,6 +25,12 @@ abstract class AawashRoute {
         name: OtpVerificationScreen.route,
         builder: (context, state) => const OtpVerificationScreen(),
       ),
+           GoRoute(
+        path: '/${BuyOrRentScreen.route}',
+        name: BuyOrRentScreen.route,
+        builder: (context, state) => const BuyOrRentScreen(),
+      ),
+      
     ],
   );
 }

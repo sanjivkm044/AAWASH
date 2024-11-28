@@ -22,6 +22,7 @@ abstract class AawashColor {
   // custom  grey color
   static const primaryGrey = Color(0xffBCBCBC);
   static const grey100 = Color(0xff666666);
+  static const grey200 = Color(0xffB3B3B3);
   static const grey300 = Color(0xffF2F2F2);
   static const filterIconColor = Color(0xff666666);
 }

@@ -10,7 +10,7 @@ import 'package:pinput/pinput.dart';
 
 class OtpVerificationScreen extends StatefulWidget {
   const OtpVerificationScreen({super.key});
-  static const route = 'otpscreen';
+  static const  String route = 'otpscreen';
   @override
   State<OtpVerificationScreen> createState() => _OtpVerificationScreenState();
 }
