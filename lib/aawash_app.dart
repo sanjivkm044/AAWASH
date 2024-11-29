@@ -64,28 +64,6 @@ class AawashApp extends StatelessWidget {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // import 'dart:developer';
 
 // import 'package:aawash/core/internet_status/internet_bloc.dart';

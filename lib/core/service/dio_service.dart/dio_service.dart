@@ -94,9 +94,8 @@ class DioServiceImplementation extends DioService {
 //   }
 
   Future<dynamic> putData(String path, dynamic data) async {
-
     try {
-      return (await dio.put(path, data: data)).data; 
+      return (await dio.put(path, data: data)).data;
     } on DioException catch (e) {
       handleDioException(e);
     }
@@ -152,7 +151,6 @@ class DioServiceImplementation extends DioService {
     }
   }
 }
-
 
 class MyHttpOverrides extends HttpOverrides {
   @override

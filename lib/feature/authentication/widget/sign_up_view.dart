@@ -7,13 +7,23 @@ import 'package:aawash/core/form/form_builder_text_field.dart';
 import 'package:aawash/core/theme/aawash_text_style.dart';
 import 'package:aawash/core/widget/button/aawash_primary_button.dart';
 import 'package:aawash/core/widget/spacer/spacer.dart';
+import 'package:aawash/feature/authentication/screen/otp_verification_screen.dart';
 import 'package:aawash/flavors.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
-class SignupView extends StatelessWidget {
+class SignupView extends StatefulWidget {
   const SignupView({
     super.key,
   });
+
+  @override
+  State<SignupView> createState() => _SignupViewState();
+}
+
+class _SignupViewState extends State<SignupView> {
+  final TextEditingController identifierController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +45,7 @@ class SignupView extends StatelessWidget {
               height: 40,
             ),
             TextFormFieldBuilder(
+              controller: identifierController,
               name: "Email",
               initialValue: "",
               hintText: "Email or Phone",
@@ -47,6 +58,8 @@ class SignupView extends StatelessWidget {
             AawashPrimaryButton(
               text: "SIGN UP",
               onPressed: () {
+                context.goNamed(OtpVerificationScreen.route);
+
                 log(" Sign Up Button Pressed!");
               },
               color: Colors.black,
@@ -62,7 +75,5 @@ class SignupView extends StatelessWidget {
         ),
       ),
     );
-  
-  
   }
 }

@@ -5,12 +5,14 @@ import 'package:aawash/core/theme/aawash_text_color.dart';
 import 'package:aawash/core/theme/aawash_text_style.dart';
 import 'package:aawash/core/widget/button/aawash_primary_button.dart';
 import 'package:aawash/core/widget/spacer/spacer.dart';
+import 'package:aawash/feature/authentication/screen/rent_or_buy_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pinput/pinput.dart';
 
 class OtpVerificationScreen extends StatefulWidget {
   const OtpVerificationScreen({super.key});
-  static const  String route = 'otpscreen';
+  static const String route = 'otpscreen';
   @override
   State<OtpVerificationScreen> createState() => _OtpVerificationScreenState();
 }
@@ -74,13 +76,13 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                   decoration: BoxDecoration(
                     border: Border(
                       bottom: BorderSide(
-                        color: Colors.blue, // Highlighted border color
-                        width: 3, // Border width when focused
+                        color: Colors.blue,
+                        width: 3,
                       ),
                     ),
                   ),
                 ),
-                length: 4, // Number of input fields
+                length: 4,
                 controller: pinputController,
                 autofocus: true,
               ),
@@ -90,6 +92,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
               AawashPrimaryButton(
                 text: "VERIFY CODE",
                 onPressed: () {
+                  context.goNamed(BuyOrRentScreen.route);
                   log(" Verify Code Button Pressed!");
                 },
                 color: AawashColor.primaryGrey,

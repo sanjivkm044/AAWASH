@@ -1,10 +1,4 @@
-// import 'dart:async';
-// import 'package:aawash/aawash_app.dart';
-// import 'package:flutter/material.dart';
 
-// FutureOr<void> main() async {
-//   runApp(const AawashApp());
-// }
 
 import 'dart:async';
 import 'dart:developer';

@@ -24,9 +24,11 @@ class TextFormFieldBuilder extends StatelessWidget {
   final Color? enabledBorderColor;
   final Color? disabledBorderColor;
   final BorderRadius? borderRadius;
+  final TextEditingController controller;
 
   const TextFormFieldBuilder({
     required this.name,
+    required this.controller,
     this.initialValue,
     this.hintText,
     this.labelText,
@@ -44,6 +46,7 @@ class TextFormFieldBuilder extends StatelessWidget {
     this.inputFormatters,
     this.keyboardType,
     this.borderRadius,
+    
     this.enabledBorderColor = AawashColor.blue,
     this.disabledBorderColor = AawashColor.grey100,
     super.key,
@@ -52,8 +55,9 @@ class TextFormFieldBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FormBuilderTextField(
+      controller: controller,
       name: name,
-      key: UniqueKey(), 
+      key: UniqueKey(),
       initialValue: initialValue,
       decoration: InputDecoration(
         hintText: hintText,

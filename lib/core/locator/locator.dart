@@ -5,17 +5,13 @@ import 'package:get_it/get_it.dart';
 
 final GetIt getIt = GetIt.instance;
 Future<void> setup() async {
-
-   getIt.registerLazySingleton<Connectivity>(() => Connectivity());
+  getIt.registerLazySingleton<Connectivity>(() => Connectivity());
 
   // Other registrations...
-  getIt.registerFactory<InternetBloc>(() => InternetBloc(getIt<Connectivity>()));
-  
+  getIt
+      .registerFactory<InternetBloc>(() => InternetBloc(getIt<Connectivity>()));
 
   getIt.registerLazySingleton<DioService>(
     () => DioServiceImplementation(),
   );
 }
-
-
-

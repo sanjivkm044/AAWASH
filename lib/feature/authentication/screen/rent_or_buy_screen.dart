@@ -95,7 +95,7 @@ class _BuyOrRentScreenState extends State<BuyOrRentScreen> {
                 onPressed: () {
                   log(" Continue Button Pressed!");
                 },
-                color: Colors.black,
+                color: AawashColor.black,
               ),
             ],
           ),

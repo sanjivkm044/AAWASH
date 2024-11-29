@@ -14,23 +14,21 @@ abstract class AawashRoute {
   static final router = GoRouter(
     initialLocation: '/${SignupScreen.route}',
     routes: [
-     
-       GoRoute(
+      GoRoute(
         path: '/${SignupScreen.route}',
         name: SignupScreen.route,
         builder: (context, state) => const SignupScreen(),
       ),
-       GoRoute(
+      GoRoute(
         path: '/${OtpVerificationScreen.route}',
         name: OtpVerificationScreen.route,
         builder: (context, state) => const OtpVerificationScreen(),
       ),
-           GoRoute(
+      GoRoute(
         path: '/${BuyOrRentScreen.route}',
         name: BuyOrRentScreen.route,
         builder: (context, state) => const BuyOrRentScreen(),
       ),
-      
     ],
   );
 }
