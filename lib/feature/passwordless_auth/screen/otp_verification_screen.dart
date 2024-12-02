@@ -6,10 +6,9 @@ import 'package:aawash/core/theme/aawash_text_color.dart';
 import 'package:aawash/core/theme/aawash_text_style.dart';
 import 'package:aawash/core/widget/button/aawash_primary_button.dart';
 import 'package:aawash/core/widget/spacer/spacer.dart';
-import 'package:aawash/feature/passwordless_auth/bloc/verify_code/verify_code_bloc.dart';
-import 'package:aawash/feature/passwordless_auth/bloc/verify_code/verify_code_event.dart';
-import 'package:aawash/feature/passwordless_auth/bloc/verify_code/verify_code_state.dart';
-
+import 'package:aawash/feature/passwordless_auth/bloc/verify_otp_code/verify_otp_bloc.dart';
+import 'package:aawash/feature/passwordless_auth/bloc/verify_otp_code/verify_otp_event.dart';
+import 'package:aawash/feature/passwordless_auth/bloc/verify_otp_code/verify_otp_state.dart';
 import 'package:aawash/feature/passwordless_auth/screen/rent_or_buy_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,7 +24,7 @@ class OtpVerificationScreen extends StatefulWidget {
 
 class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
   final TextEditingController pinputController = TextEditingController();
-  final VerifyCodeBloc verifyCodeBloc = getIt<VerifyCodeBloc>();
+  final VerifyOtpBloc verifyCodeBloc = getIt<VerifyOtpBloc>();
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +47,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
       body: SingleChildScrollView(
         child: Padding(
           padding: PaddingConstant.screenPadding,
-          child: BlocConsumer<VerifyCodeBloc, VerifyCodeState>(
+          child: BlocConsumer<VerifyOtpBloc, VerifyOtpState>(
             listener: (context, state) {
               // TODO: implement listener
             },
@@ -67,61 +66,54 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                   const SpacerWidget(
                     height: 40,
                   ),
-                  BlocConsumer<VerifyCodeBloc, VerifyCodeState>(
-                    listener: (context, state) {
-                      // TODO: implement listener
-                    },
-                    builder: (context, state) {
-                      return Pinput(
-                        defaultPinTheme: const PinTheme(
-                          width: 56,
-                          height: 56,
-                          textStyle: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black,
-                          ),
-                          decoration: BoxDecoration(
-                            border: Border(
-                              bottom: BorderSide(
-                                color: AawashColor.grey,
-                                width: 2,
-                              ),
-                            ),
+                  Pinput(
+                    defaultPinTheme: const PinTheme(
+                      width: 56,
+                      height: 56,
+                      textStyle: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      ),
+                      decoration: BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(
+                            color: AawashColor.grey,
+                            width: 2,
                           ),
                         ),
-                        focusedPinTheme: const PinTheme(
-                          width: 56,
-                          height: 56,
-                          textStyle: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black,
-                          ),
-                          decoration: BoxDecoration(
-                            border: Border(
-                              bottom: BorderSide(
-                                color: Colors.blue,
-                                width: 3,
-                              ),
-                            ),
+                      ),
+                    ),
+                    focusedPinTheme: const PinTheme(
+                      width: 56,
+                      height: 56,
+                      textStyle: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      ),
+                      decoration: BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(
+                            color: Colors.blue,
+                            width: 3,
                           ),
                         ),
-                        onCompleted: (value) {
-                          log(state.toString());
-                          if (state is VerifyCodeSuccessState) {
-                            verifyCodeBloc.add(
-                              OtpVerifyEvent(
-                                state.message,
-                                pinputController.text.toString(),
-                              ),
-                            );
-                          }
-                        },
-                        length: 6,
-                        autofocus: true,
-                      );
+                      ),
+                    ),
+                    onCompleted: (value) {
+                      log(state.toString());
+                      if (state is VerifyOtpSuccessState) {
+                        verifyCodeBloc.add(
+                          VerifyOtpCodeEvent(
+                            state.message,
+                            pinputController.text.toString(),
+                          ),
+                        );
+                      }
                     },
+                    length: 6,
+                    autofocus: true,
                   ),
                   const SpacerWidget(
                     height: 20,
@@ -129,9 +121,9 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                   AawashPrimaryButton(
                     text: "VERIFY CODE",
                     onPressed: () {
-                      if (state is VerifyCodeSuccessState) {
+                      if (state is VerifyOtpSuccessState) {
                         verifyCodeBloc.add(
-                          OtpVerifyEvent(
+                          VerifyOtpCodeEvent(
                             state.message,
                             pinputController.text.toString(),
                           ),

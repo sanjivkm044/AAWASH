@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:aawash/core/constant/aawash_api.dart';
 import 'package:aawash/core/constant/type_def.dart';
 import 'package:aawash/core/failure/failure.dart';
@@ -12,6 +10,7 @@ abstract interface class PasswordLessAuthService {
   FutureEither<SentOtpResponseModel> sendOTP(
     String identifier,
   );
+
   FutureEither<VerifyOtpResponseModel> verifyOTP(
     String otpCode,
     String jwt,
@@ -54,7 +53,9 @@ class PasswordLessAuthServiceImplementation extends PasswordLessAuthService {
 
   @override
   FutureEither<VerifyOtpResponseModel> verifyOTP(
-      String otpCode, String jwt) async {
+    String otpCode,
+    String jwt,
+  ) async {
     try {
       final data = await dioService.postData(
         AawashApi.otpSent,

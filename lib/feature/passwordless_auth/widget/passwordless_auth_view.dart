@@ -8,9 +8,9 @@ import 'package:aawash/core/locator/locator.dart';
 import 'package:aawash/core/theme/aawash_text_style.dart';
 import 'package:aawash/core/widget/button/aawash_primary_button.dart';
 import 'package:aawash/core/widget/spacer/spacer.dart';
-import 'package:aawash/feature/passwordless_auth/bloc/send_verification_code/send_verification_code_bloc.dart';
-import 'package:aawash/feature/passwordless_auth/bloc/send_verification_code/send_verification_code_event.dart';
-import 'package:aawash/feature/passwordless_auth/bloc/send_verification_code/send_verification_code_state.dart';
+import 'package:aawash/feature/passwordless_auth/bloc/send_otp_code/send_otp_bloc.dart';
+import 'package:aawash/feature/passwordless_auth/bloc/send_otp_code/send_otp_event.dart';
+import 'package:aawash/feature/passwordless_auth/bloc/send_otp_code/send_otp_state.dart';
 import 'package:aawash/feature/passwordless_auth/screen/otp_verification_screen.dart';
 import 'package:aawash/flavors.dart';
 import 'package:flutter/material.dart';
@@ -30,8 +30,7 @@ class PasswordLessAuthView extends StatefulWidget {
 class _PasswordLessAuthViewState extends State<PasswordLessAuthView> {
   final TextEditingController identifierController = TextEditingController();
   final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
-  final SendVerificationCodeBloc sendVerificationCodeBloc =
-      getIt<SendVerificationCodeBloc>();
+  final SendOtpBloc sendVerificationCodeBloc = getIt<SendOtpBloc>();
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +53,7 @@ class _PasswordLessAuthViewState extends State<PasswordLessAuthView> {
               const SpacerWidget(
                 height: 40,
               ),
-              BlocConsumer<SendVerificationCodeBloc, SendVerificationCodeState>(
+              BlocConsumer<SendOtpBloc, SendOtpState>(
                 listener: (context, state) {
                   // TODO: implement listener
                 },
@@ -67,7 +66,7 @@ class _PasswordLessAuthViewState extends State<PasswordLessAuthView> {
                     labelText: "Email Or Phone ",
                     validator: (value) {},
                     onSubmitted: (value) {
-                      OtpSendEvent(value!);
+                      SendOtpCodeEvent(value!);
                     },
                     textAlign: TextAlign.start,
                   );
@@ -81,7 +80,7 @@ class _PasswordLessAuthViewState extends State<PasswordLessAuthView> {
                     final data = _formKey.currentState!.value;
                     log(data.toString());
                     sendVerificationCodeBloc.add(
-                      OtpSendEvent(identifierController.text),
+                      SendOtpCodeEvent(identifierController.text),
                     );
                   }
                   context.goNamed(OtpVerificationScreen.route);
