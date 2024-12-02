@@ -6,6 +6,8 @@ import 'package:aawash/core/theme/aawash_text_color.dart';
 import 'package:aawash/core/theme/aawash_theme.dart';
 import 'package:aawash/core/utils/toast/toast_message.dart';
 import 'package:aawash/core/widget/unfocus.dart';
+import 'package:aawash/feature/passwordless_auth/bloc/send_verification_code/send_verification_code_bloc.dart';
+import 'package:aawash/feature/passwordless_auth/bloc/verify_code/verify_code_bloc.dart';
 import 'package:aawash/flavors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,6 +23,12 @@ class AawashApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (_) => getIt<InternetBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => getIt<SendVerificationCodeBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => getIt<VerifyCodeBloc>(),
         ),
       ],
       child: UnFocus(

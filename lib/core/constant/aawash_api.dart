@@ -5,3 +5,5 @@ abstract class AawashApi {
   static const String otpRequest = 'auth/send-otp';
   static const String otpSent = 'auth/verify-otp';
 }
+
+

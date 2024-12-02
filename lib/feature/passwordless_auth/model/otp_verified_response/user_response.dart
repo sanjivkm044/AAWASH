@@ -1,6 +1,6 @@
 import 'package:intl/intl.dart';
 
-class User {
+class UserResponseModel {
   int? id;
   String? fullName;
   String? email;
@@ -23,7 +23,7 @@ class User {
   bool? isEmailVerified;
   bool? isPhoneVerified;
 
-  User(
+  UserResponseModel(
       {required this.id,
       this.fullName,
       this.email,
@@ -46,7 +46,7 @@ class User {
       this.isEmailVerified = false,
       this.isPhoneVerified = false});
 
-  User.fromJson(Map<String, dynamic> json) {
+  UserResponseModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     fullName = json['full_name'];
     email = json['email'];

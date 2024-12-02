@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:aawash/core/constant/aawash_api.dart';
 import 'package:aawash/core/model/message_response.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
@@ -10,16 +11,30 @@ abstract interface class DioService {
     dynamic data,
     CancelToken? cancelToken,
   ]);
-  Future<dynamic> getData(String path, [Map<String, dynamic>? queryParameter]);
+  Future<dynamic> getData(
+    String path, [
+    Map<String, dynamic>? queryParameter,
+  ]);
 
-  Future<dynamic> putData(String path, dynamic data);
-  Future<dynamic> patchData(String path, dynamic data);
-  Future<dynamic> deleteData(String path, dynamic data);
+  Future<dynamic> putData(
+    String path,
+    dynamic data,
+  );
+  Future<dynamic> patchData(
+    String path,
+    dynamic data,
+  );
+  Future<dynamic> deleteData(
+    String path,
+    dynamic data,
+  );
 }
 
 class DioServiceImplementation extends DioService {
   DioServiceImplementation() {
-    dio.interceptors.add(const Interceptor());
+    dio.interceptors.add(
+      const Interceptor(),
+    );
 
     if (kDebugMode) {
       dio.interceptors.add(
@@ -37,15 +52,12 @@ class DioServiceImplementation extends DioService {
     }
   }
 
-  final dio = Dio();
-
-  final options = BaseOptions(
-    baseUrl: '',
-    extra: Map(),
-    headers: Map(),
-    connectTimeout: const Duration(seconds: 3),
-    receiveTimeout: const Duration(seconds: 3),
-    sendTimeout: const Duration(seconds: 3),
+  final dio = Dio(
+    BaseOptions(
+      baseUrl: AawashApi.baseUrl,
+      // extra: Map(),
+      // headers: Map(),
+    ),
   );
 
   @override
@@ -82,20 +94,14 @@ class DioServiceImplementation extends DioService {
       handleDioException(e);
     }
   }
-// Future<dynamic> getData(
-//     String path, [
-//     Map<String, dynamic>? queryParams,
-//   ]) async {
-//     try {
-//       return (await _dio.get(path, queryParameters: queryParams)).data;
-//     } on DioException catch (e) {
-//       _handleDioException(e);
-//     }
-//   }
 
   Future<dynamic> putData(String path, dynamic data) async {
     try {
-      return (await dio.put(path, data: data)).data;
+      return (await dio.put(
+        path,
+        data: data,
+      ))
+          .data;
     } on DioException catch (e) {
       handleDioException(e);
     }
@@ -104,7 +110,11 @@ class DioServiceImplementation extends DioService {
   @override
   Future<dynamic> patchData(String path, dynamic data) async {
     try {
-      return (await dio.patch(path, data: data)).data;
+      return (await dio.patch(
+        path,
+        data: data,
+      ))
+          .data;
     } on DioException catch (e) {
       handleDioException(e);
     }
@@ -113,7 +123,11 @@ class DioServiceImplementation extends DioService {
   @override
   Future deleteData(String path, data) async {
     try {
-      return (await dio.delete(path, data: data)).data;
+      return (await dio.delete(
+        path,
+        data: data,
+      ))
+          .data;
     } on DioException catch (e) {
       handleDioException(e);
     }
@@ -138,7 +152,9 @@ class DioServiceImplementation extends DioService {
   String handleError(DioException dioException) {
     switch (dioException.response?.statusCode) {
       case 400:
-        return MessageResponse.fromError(dioException.response!.data).message;
+        return MessageResponse.fromError(
+          dioException.response!.data,
+        ).message;
 
       case 500:
         return 'Unexcepted error occured. Please try again later';

@@ -24,11 +24,11 @@ class TextFormFieldBuilder extends StatelessWidget {
   final Color? enabledBorderColor;
   final Color? disabledBorderColor;
   final BorderRadius? borderRadius;
-  final TextEditingController controller;
+  final TextEditingController? controller;
 
   const TextFormFieldBuilder({
     required this.name,
-    required this.controller,
+     this.controller,
     this.initialValue,
     this.hintText,
     this.labelText,

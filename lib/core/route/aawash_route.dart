@@ -1,6 +1,7 @@
-import 'package:aawash/feature/authentication/screen/otp_verification_screen.dart';
-import 'package:aawash/feature/authentication/screen/rent_or_buy_screen.dart';
-import 'package:aawash/feature/authentication/screen/sign_up_screen.dart';
+import 'package:aawash/feature/passwordless_auth/screen/otp_verification_screen.dart';
+import 'package:aawash/feature/passwordless_auth/screen/rent_or_buy_screen.dart';
+import 'package:aawash/feature/passwordless_auth/screen/passwordless_auth_screen.dart';
+import 'package:aawash/feature/dashboard/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -12,12 +13,12 @@ abstract class AawashRoute {
       GlobalKey<NavigatorState>();
 
   static final router = GoRouter(
-    initialLocation: '/${SignupScreen.route}',
+    initialLocation: '/${PasswordLessAuthScreen.route}',
     routes: [
       GoRoute(
-        path: '/${SignupScreen.route}',
-        name: SignupScreen.route,
-        builder: (context, state) => const SignupScreen(),
+        path: '/${PasswordLessAuthScreen.route}',
+        name: PasswordLessAuthScreen.route,
+        builder: (context, state) => const PasswordLessAuthScreen(),
       ),
       GoRoute(
         path: '/${OtpVerificationScreen.route}',
@@ -28,6 +29,11 @@ abstract class AawashRoute {
         path: '/${BuyOrRentScreen.route}',
         name: BuyOrRentScreen.route,
         builder: (context, state) => const BuyOrRentScreen(),
+      ),
+      GoRoute(
+        path: '/${DashboardScreen.route}',
+        name: DashboardScreen.route,
+        builder: (context, state) => const DashboardScreen(),
       ),
     ],
   );

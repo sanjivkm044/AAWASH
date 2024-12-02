@@ -1,38 +1,45 @@
+import 'dart:math';
+
 import 'package:aawash/core/constant/aawash_api.dart';
 import 'package:aawash/core/constant/type_def.dart';
 import 'package:aawash/core/failure/failure.dart';
 import 'package:aawash/core/service/dio_service.dart/dio_service.dart';
-import 'package:aawash/feature/authentication/model/otp_response/otp_response.dart';
-import 'package:aawash/feature/authentication/model/otp_verified_response/otp_verified_response.dart';
+import 'package:aawash/feature/passwordless_auth/model/otp_response/sent_otp_response.dart';
+import 'package:aawash/feature/passwordless_auth/model/otp_verified_response/verify_otp_respnse.dart';
 import 'package:fpdart/fpdart.dart';
 
-abstract interface class AuthService {
-  FutureEither<OtpResponse> sendOTP(
+abstract interface class PasswordLessAuthService {
+  FutureEither<SentOtpResponseModel> sendOTP(
     String identifier,
   );
-  FutureEither<OtpVerifiedResponse> verifyOTP(
+  FutureEither<VerifyOtpResponseModel> verifyOTP(
     String otpCode,
-    String token,
+    String jwt,
   );
 }
 
-class AuthServiceImplementation extends AuthService {
+class PasswordLessAuthServiceImplementation extends PasswordLessAuthService {
   final DioService dioService;
-  AuthServiceImplementation(this.dioService);
+  PasswordLessAuthServiceImplementation(
+    this.dioService,
+  );
 
   @override
-  FutureEither<OtpResponse> sendOTP(
+  FutureEither<SentOtpResponseModel> sendOTP(
     String identifier,
   ) async {
     try {
       final data = await dioService.postData(
         AawashApi.otpRequest,
         {
-          "phone": "$identifier ",
+          "identifier": identifier,
+          "type": identifier.contains('@') ? "email" : "phone",
+          "role": "USER"
         },
       );
+
       return right(
-        OtpResponse.fromJson(
+        SentOtpResponseModel.fromJson(
           data,
         ),
       );
@@ -46,19 +53,19 @@ class AuthServiceImplementation extends AuthService {
   }
 
   @override
-  FutureEither<OtpVerifiedResponse> verifyOTP(
-      String otpCode, String token) async {
+  FutureEither<VerifyOtpResponseModel> verifyOTP(
+      String otpCode, String jwt) async {
     try {
       final data = await dioService.postData(
         AawashApi.otpSent,
         {
           " OTPCODE": otpCode,
-          "token": token,
+          "token": jwt,
         },
       );
 
       return right(
-        OtpVerifiedResponse.fromJson(data),
+        VerifyOtpResponseModel.fromJson(data),
       );
     } catch (e) {
       return left(

@@ -8,7 +8,7 @@ import 'package:aawash/core/theme/aawash_text_style.dart';
 import 'package:aawash/core/widget/button/aawash_primary_button.dart';
 import 'package:aawash/core/widget/spacer/spacer.dart';
 import 'package:flutter/material.dart';
-
+ 
 class BuyOrRentScreen extends StatefulWidget {
   const BuyOrRentScreen({
     super.key,
